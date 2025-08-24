@@ -1,0 +1,16 @@
+start_menu:
+  type: REPLY
+  buttons:
+    - ["Реєстрація✏️"]
+    - ["Перейти до пошуку🔎"]
+main_menu:
+  type: REPLY
+  buttons:
+    - ["Переглянути всі авто🚗"]
+    - ["Підібрати авто🔎", "Історія підборів📃"]
+SETTINGS_MENU:
+  type: INLINE
+  buttons:
+    - [ {text: "🔊 Звук", callback: "sound_toggle"}, {text: "🌙 Темна тема", callback: "theme_toggle"} ]
+    - [ {text: "🔙 Назад", callback: "back"} ]
+
