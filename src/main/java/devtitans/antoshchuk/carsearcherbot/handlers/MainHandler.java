@@ -19,19 +19,4 @@ public class MainHandler {
         keyboardFactory = new KeyboardFactory();
         messageService = new MessageService(bot);
     }
-
-    public void testHandler(Message message) {
-        String text = message.getText();
-        switch (text){
-            case "/test"->{
-                System.out.println("Test");
-                KeyboardFactory keyboardFactory = new KeyboardFactory();
-
-                messageService.sendMessage(message.getChatId(), message.getText(), keyboardFactory.getKeyboard(KeyboardLoader.Keyboard.START_MENU));
-            }
-            case "/test2"->{
-                messageService.sendMessage(message.getChatId(), message.getText(), keyboardFactory.getKeyboard(KeyboardLoader.Keyboard.SETTINGS_MENU));
-            }
-        }
-    }
 }
