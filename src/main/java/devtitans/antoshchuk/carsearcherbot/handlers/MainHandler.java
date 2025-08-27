@@ -2,11 +2,9 @@ package devtitans.antoshchuk.carsearcherbot.handlers;
 
 import devtitans.antoshchuk.carsearcherbot.bot.CarSearcherBot;
 import devtitans.antoshchuk.carsearcherbot.util.keyboard.KeyboardFactory;
-import devtitans.antoshchuk.carsearcherbot.util.keyboard.KeyboardLoader;
-import devtitans.antoshchuk.carsearcherbot.util.message.MessageService;
+import devtitans.antoshchuk.carsearcherbot.service.message.MessageService;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-import org.telegram.telegrambots.meta.api.objects.Message;
 
 @Service
 public class MainHandler {
