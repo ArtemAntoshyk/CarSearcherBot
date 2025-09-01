@@ -3,27 +3,16 @@ steps:
   - name: 'gcr.io/cloud-builders/mvn'
     args: ['package', '-DskipTests']
 
-  # 2. Собрать Docker-образ
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-app', '.']
-
-  # 3. Запушить образ в Container Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/my-app']
-
-  # 4. Деплой в Cloud Run
+  # 2. Деплой в Cloud Run прямо из исходников
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
       [
         'run', 'deploy', 'my-app',
-        '--image', 'gcr.io/$PROJECT_ID/my-app',
+        '--source', '.',
         '--platform', 'managed',
         '--region', 'europe-west1',
         '--allow-unauthenticated'
       ]
 options:
   logging: CLOUD_LOGGING_ONLY
-
-images:
-  - 'gcr.io/$PROJECT_ID/my-app'
