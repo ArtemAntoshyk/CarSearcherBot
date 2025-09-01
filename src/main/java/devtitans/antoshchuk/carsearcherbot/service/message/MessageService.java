@@ -1,4 +1,4 @@
-package devtitans.antoshchuk.carsearcherbot.util.message;
+package devtitans.antoshchuk.carsearcherbot.service.message;
 
 import devtitans.antoshchuk.carsearcherbot.bot.CarSearcherBot;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
 @Service
 public class MessageService {
-    private CarSearcherBot bot;
+    private final CarSearcherBot bot;
 
     public MessageService(CarSearcherBot bot) {
         this.bot = bot;

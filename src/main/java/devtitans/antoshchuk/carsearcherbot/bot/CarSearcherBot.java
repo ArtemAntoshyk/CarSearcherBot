@@ -19,7 +19,7 @@ public class CarSearcherBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        mainHandler.testHandler(update.getMessage());
+
     }
 
     @Override
