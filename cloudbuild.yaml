@@ -1,18 +1,37 @@
 steps:
-  # 1. Собрать JAR с помощью Maven
+  # 1. Сборка JAR с Maven
   - name: 'gcr.io/cloud-builders/mvn'
-    args: ['package', '-DskipTests']
+    args: ['clean', 'package', '-DskipTests']
 
-  # 2. Деплой в Cloud Run прямо из исходников
+  # 2. Сборка Docker образа
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'build',
+      '-t', 'gcr.io/$PROJECT_ID/carsearcherbot',
+      '-f', 'Dockerfile',
+      '.'
+    ]
+
+  # 3. Пуш Docker образа в Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: [
+      'push',
+      'gcr.io/$PROJECT_ID/carsearcherbot'
+    ]
+
+  # 4. Деплой в Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
-    args:
-      [
-        'run', 'deploy', 'my-app',
-        '--source', '.',
-        '--platform', 'managed',
-        '--region', 'europe-west1',
-        '--allow-unauthenticated'
-      ]
+    args: [
+      'run', 'deploy', 'carsearcherbot',
+      '--image', 'gcr.io/$PROJECT_ID/carsearcherbot',
+      '--platform', 'managed',
+      '--region', 'europe-west1',
+      '--allow-unauthenticated'
+    ]
+
 options:
   logging: CLOUD_LOGGING_ONLY
+
+images:
+  - 'gcr.io/$PROJECT_ID/carsearcherbot'
