@@ -1,6 +1,7 @@
 package devtitans.antoshchuk.carsearcherbot.util.keyboard;
 
 import lombok.Getter;
+import org.springframework.stereotype.Component;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.FileNotFoundException;
@@ -11,13 +12,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class KeyboardLoader {
     @Getter
     public enum Keyboard {
 
         START_MENU("start_menu"),
         MAIN_MENU("main_menu"),
-        SETTINGS_MENU("settings_menu");
+        SETTINGS_MENU("settings_menu"),
+        SUBMIT_MENU("submit_menu"),
+        SHARE_CONTACT("share_contact");
 
         private final String type;
 

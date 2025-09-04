@@ -14,7 +14,6 @@ public class MainHandler {
 
     public MainHandler(@Lazy CarSearcherBot bot) {
         this.bot = bot;
-        keyboardFactory = new KeyboardFactory();
         messageService = new MessageService(bot);
     }
 }

@@ -3,14 +3,27 @@ start_menu:
   buttons:
     - ["Реєстрація✏️"]
     - ["Перейти до пошуку🔎"]
+
+submit_menu:
+  type: REPLY
+  buttons:
+    - ["Так✅", "Ні❌"]
+
+share_contact:
+  type: REPLY
+  buttons:
+    - ["Поділитись номером⬆️->request_phone"]
+
 main_menu:
   type: REPLY
   buttons:
     - ["Переглянути всі авто🚗"]
     - ["Підібрати авто🔎", "Історія підборів📃"]
+
 SETTINGS_MENU:
   type: INLINE
   buttons:
     - [ {text: "🔊 Звук", callback: "sound_toggle"}, {text: "🌙 Темна тема", callback: "theme_toggle"} ]
     - [ {text: "🔙 Назад", callback: "back"} ]
+
 

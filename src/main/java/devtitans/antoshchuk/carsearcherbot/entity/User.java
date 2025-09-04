@@ -25,6 +25,9 @@ public class User {
     @Column(unique = true)
     private String phone;
     @NotNull
+    @Column(unique = true)
+    private String email;
+    @NotNull
     private String city;
     private LocalDateTime createdAt;
     private LocalDateTime lastActive;

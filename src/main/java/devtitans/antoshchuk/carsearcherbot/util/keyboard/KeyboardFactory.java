@@ -1,17 +1,26 @@
 package devtitans.antoshchuk.carsearcherbot.util.keyboard;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+@Component
 public class KeyboardFactory {
-    private KeyboardLoader keyboardLoader = new KeyboardLoader();
+    private KeyboardLoader keyboardLoader;
+
+    @Autowired
+    public KeyboardFactory(KeyboardLoader keyboardLoader) {
+        this.keyboardLoader = keyboardLoader;
+    }
 
     private ReplyKeyboardMarkup getReplyKeyboard(List<List<String>> buttons) {
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
@@ -20,7 +29,13 @@ public class KeyboardFactory {
         for (List<String> row : buttons) {
             KeyboardRow keyboardRow = new KeyboardRow();
             for (String button : row) {
-                keyboardRow.add(button);
+                String[] buttonParts = button.split("->");
+                String text = buttonParts[0];
+                KeyboardButton keyboardButton = new KeyboardButton(text);
+                if (buttonParts.length == 2) {
+                    if(buttonParts[1].equals("request_phone")) keyboardButton.setRequestContact(true);
+                }
+                keyboardRow.add(keyboardButton);
             }
             keyboard.add(keyboardRow);
         }

@@ -2,6 +2,7 @@ package devtitans.antoshchuk.carsearcherbot.service.message;
 
 import devtitans.antoshchuk.carsearcherbot.bot.CarSearcherBot;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.DeleteMessage;
@@ -13,7 +14,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 public class MessageService {
     private final CarSearcherBot bot;
 
-    public MessageService(CarSearcherBot bot) {
+    public MessageService(@Lazy CarSearcherBot bot) {
         this.bot = bot;
     }
 
